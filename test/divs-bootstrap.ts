@@ -18,12 +18,11 @@ let bootstrap_alert_snippet = `<div>
 
 describe("bootstrap snippet", () => {
     it("matches", () => {
-        let markup = () => div(() => {
+        let markup = () => div(() =>
             ['primary', 'secondary', 'success', 'danger', 'warning', 'info',
                 'light', 'dark'].forEach(alert =>
                 div({class: `alert alert-${alert}`, role: "alert"},
-                    `A simple ${alert} alert—check it out!`))
-        })
+                    `A simple ${alert} alert—check it out!`)))
 
         expect(blockBuilder(markup).toHtml().trim()).to.eq(bootstrap_alert_snippet)
     })

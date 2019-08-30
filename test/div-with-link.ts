@@ -14,7 +14,7 @@ describe("div", () => {
                 text("Click if you like it.")
             })
 
-        console.log(blockBuilder(markup).toHtml().trim())
+        console.log(blockBuilder(markup).toHtml())
     })
 
 })
