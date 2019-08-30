@@ -2,6 +2,13 @@
 The `js.html` library provides a domain specific language (DSL) to build HTML with
 pure javascript code.
 
+## Installation
+Install with `npm`:
+
+```bash
+$ npm install --save js.html-builder
+```
+
 ## Examples
 ### Hello World
 
@@ -38,7 +45,7 @@ Generates the following HTML:
 ```
 
 ### HTML snippet
-The following HTML snippet mirrors Bootstrap's (alert)[https://getbootstrap.com/docs/4.3/components/alerts/] example:
+The following HTML snippet mirrors Bootstrap's [alert](https://getbootstrap.com/docs/4.3/components/alerts/) example:
 
 ```javascript
 let markup = () => div(() =>
@@ -50,7 +57,7 @@ let markup = () => div(() =>
 console.log(blockBuilder(markup).toHtml())
 ```
 
-Generates the following HTML:
+Generates the following
 ```HTML
 <div>
   <div class="alert alert-primary" role="alert">A simple primary alert—check it out!</div>
