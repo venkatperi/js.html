@@ -1,6 +1,5 @@
-
-
 import { AbstractFactory, JsDsl } from "js-dsl"
+import { Config } from "js-dsl/dist"
 import _ from "lodash"
 
 export type Primitive = string | number | boolean
@@ -49,10 +48,13 @@ export class Element {
     }
 
     toHtml(prefix: string = "") {
-        const res: Array<string> = ['\n', prefix]
+        const res: Array<string> = []
         if (this.tag === 'html') {
             res.push("<!DOCTYPE html>\n")
+        } else {
+            res.push('\n', prefix)
         }
+
         if (!this.isComment) {
             res.push(`<${this.tag}`)
             _.forOwn(this.attributes,
@@ -185,5 +187,13 @@ export class HtmlBuilder extends JsDsl {
         this.registerFactory('html', new HtmlFactory())
         this.registerFactory('comment', new ElementFactory({isComment: true}))
     }
+}
+
+export function htmlBuilder(f: Config): Element {
+    return new HtmlBuilder().build<Element>(f)
+}
+
+export function blockBuilder(f: Config): Element {
+    return new BlockBuilder().build<Element>(f)
 }
 

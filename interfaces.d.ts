@@ -1,9 +1,9 @@
 import { Config } from "js-dsl"
-import { Attributes, Primitive } from "./HtmlBuilder"
+import { Attributes, Primitive } from "./dist/HtmlBuilder"
 
 declare global {
     export function html(attr: Attributes, config: Config): any;
-    export function html(config: Config): any;
+    export function html(config?: Config): any;
 
     export function head(attr: Attributes, config: Config): any;
     export function head(config: Config): any;
