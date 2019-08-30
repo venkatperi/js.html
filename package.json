@@ -2,21 +2,25 @@
   "name": "js.html",
   "version": "1.0.0",
   "description": "Javascript DSL for HTML",
-  "main": "index.js",
+  "main": "dist/HtmlBuilder.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:src": "tsc"
+    "pretest": "npm run build:src",
+    "test": "TS_NODE_COMPILER_OPTIONS='{\"noImplicitAny\":false}' mocha ",
+    "build:src": "tsc",
+    "prepare": "npm run clean && npm run build"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "@types/lodash": "^4.14.138",
+    "@types/node": "^12.7.2",
+    "mocha": "^6.2.0",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "js-dsl": "^1.0.4",
+    "js-dsl": "^1.0.5",
     "lodash": "^4.17.15"
   }
 }

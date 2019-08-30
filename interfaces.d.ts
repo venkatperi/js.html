@@ -2,11 +2,11 @@ import { Config } from "js-dsl"
 import { Attributes, Primitive } from "./HtmlBuilder"
 
 declare global {
-    function html(attr: Attributes, config: Config): any;
-    function html(config: Config): any;
+    export function html(attr: Attributes, config: Config): any;
+    export function html(config: Config): any;
 
-    function head(attr: Attributes, config: Config): any;
-    function head(config: Config): any;
+    export function head(attr: Attributes, config: Config): any;
+    export function head(config: Config): any;
 
     function title(attr: Attributes, value: Primitive): any;
     function title(value: Primitive): any;
