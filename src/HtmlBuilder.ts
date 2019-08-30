@@ -51,17 +51,17 @@ export class Element {
         const res: Array<string> = []
         if (this.tag === 'html') {
             res.push("<!DOCTYPE html>\n")
-        } else {
+        } else if (this.tag !== 'text') {
             res.push('\n', prefix)
         }
 
-        if (!this.isComment) {
+        if (this.isComment) {
+            res.push('<!--')
+        } else if (this.tag !== 'text') {
             res.push(`<${this.tag}`)
             _.forOwn(this.attributes,
                 (v: Value, k: string) => res.push(` ${k}="${v}"`))
             res.push('>')
-        } else {
-            res.push('<!--')
         }
 
         if (this.value) {
@@ -73,13 +73,13 @@ export class Element {
         })
 
         if (!this.noClosingTag) {
-            if (this.children.length) {
+            if (this.children.length && this.tag !== 'text') {
                 res.push('\n')
                 res.push(prefix)
             }
             if (this.isComment) {
                 res.push(`-->`)
-            } else {
+            } else if (this.tag !== 'text') {
                 res.push(`</${this.tag}>`)
             }
         }
@@ -171,7 +171,7 @@ const tags = ['address', 'article', 'aside', 'footer',
     'frameset', 'image', 'isindex', 'keygen', 'listing', 'marquee', 'menuitem',
     'multicol', 'nextid', 'nobr', 'noembed', 'noframes', 'plaintext', 'shadow',
     'spacer', 'strike', 'tt', 'xmp', 'area', 'audio', 'img', 'map', 'track',
-    'video',]
+    'video', 'text']
 
 export class BlockBuilder extends JsDsl {
     // noinspection JSUnusedGlobalSymbols
@@ -186,6 +186,7 @@ export class HtmlBuilder extends JsDsl {
     register() {
         this.registerFactory('html', new HtmlFactory())
         this.registerFactory('comment', new ElementFactory({isComment: true}))
+        this.registerFactory('text', new ElementFactory())
     }
 }
 

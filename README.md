@@ -8,7 +8,7 @@ pure javascript code.
 This javsacript code:
 
 ```typescript
-import { Element, HtmlBuilder } from "js.html"
+import { htmlBuilder } from "js.html-builder"
 
 const code = () =>
     html(() => {
@@ -19,7 +19,7 @@ const code = () =>
         })
     })
 
-console.log(new HtmlBuilder().build<Element>(code).toHtml())
+console.log(htmlBuilder(code).toHtml())
 ```
 
 Generates the following HTML:

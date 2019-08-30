@@ -23,6 +23,11 @@ declare global {
     function body(attr: Attributes, config: Config): any;
     function body(config: Config): any;
 
+    function text(attr: Attributes, value: Primitive, config?: Config): any;
+    function text(attr: Attributes, config?: Config): any;
+    function text(value?: Primitive, config?: Config): any;
+    function text(config?: Config): any;
+
     function comment(attr: Attributes, value: Primitive, config?: Config): any;
     function comment(attr: Attributes, config?: Config): any;
     function comment(value?: Primitive, config?: Config): any;
