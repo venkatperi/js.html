@@ -1,0 +1,22 @@
+{
+  "name": "js.html",
+  "version": "1.0.0",
+  "description": "Javascript DSL for HTML",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:src": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/lodash": "^4.14.138",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "js-dsl": "^1.0.4",
+    "lodash": "^4.17.15"
+  }
+}
