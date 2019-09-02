@@ -207,10 +207,25 @@ export class HtmlBuilder extends JsDsl {
     }
 }
 
+/**
+ * Accepts a configuration function which is responsible for specifying node
+ * hierarchy. Builds the node hierarchy and returns the root element (html).
+ *
+ * @param {Config} f the configuration function
+ * @returns {Element} the root element
+ */
 export function htmlBuilder(f: Config): Element {
     return new HtmlBuilder().build<Element>(f)
 }
 
+/**
+ * Accepts a configuration function which is responsible for specifying node
+ * hierarchy. Builds the node hierarchy and returns the root element (any block
+ * element).
+ *
+ * @param {Config} f the configuration function
+ * @returns {Element} the root element
+ */
 export function snippetBuilder(f: Config): Element {
     return new BlockBuilder().build<Element>(f)
 }

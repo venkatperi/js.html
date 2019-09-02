@@ -12,7 +12,7 @@ $ npm install --save js.html-builder
 ## Examples
 ### Hello World
 
-This javsacript code:
+This javascript code:
 
 ```typescript
 import { htmlBuilder } from "js.html-builder"
