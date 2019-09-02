@@ -11,6 +11,9 @@ $ npm install --save js.html-builder
 ```
 
 ## Examples
+
+See [complex example](https://github.com/venkatperi/js.html/wiki/Complex-Example) for additional example(s).
+
 ### Hello World
 
 This javascript code:
