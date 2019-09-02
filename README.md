@@ -1,3 +1,4 @@
+![](https://github.com/venkatperi/js.html/workflows/Node%20CI/badge.svg)
 # js.html-builder
 The `js.html-builder` library provides a domain specific language (DSL) to build HTML with
 pure javascript code.
