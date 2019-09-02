@@ -61,7 +61,6 @@ export class Element {
 
     /**
      * Child elements
-     * @type {any[]}
      */
     children: Array<Element> = []
 
