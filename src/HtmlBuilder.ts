@@ -212,7 +212,7 @@ export function htmlBuilder(f: Config): Element {
     return new HtmlBuilder().build<Element>(f)
 }
 
-export function blockBuilder(f: Config): Element {
+export function snippetBuilder(f: Config): Element {
     return new BlockBuilder().build<Element>(f)
 }
 

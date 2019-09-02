@@ -2,7 +2,7 @@
 
 import 'mocha'
 import { assert, expect } from 'chai'
-import { blockBuilder } from ".."
+import { snippetBuilder } from ".."
 
 
 const tags = ['address', 'article', 'aside', 'footer',
@@ -29,16 +29,16 @@ const tags = ['address', 'article', 'aside', 'footer',
 
 describe("block snippets", () => {
     it("doesn't include DOCTYPE", () => {
-        let markup = blockBuilder(() => div()).toHtml()
+        let markup = snippetBuilder(() => div()).toHtml()
         assert(!markup.startsWith(`<!DOCTYPE`), `starts with <!DOCTYPE>`)
     })
     describe("tags", () => {
         tags.forEach(t =>
-            it(t, () => expect(blockBuilder(() =>
+            it(t, () => expect(snippetBuilder(() =>
                 global[t]()).toHtml().trim()).to.eq(`<${t}></${t}>`))
         );
         ['img'].forEach(t =>
-            it(t, () => expect(blockBuilder(() =>
+            it(t, () => expect(snippetBuilder(() =>
                 global[t]()).toHtml().trim()).to.eq(`<${t}>`))
         )
     })

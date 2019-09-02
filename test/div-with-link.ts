@@ -1,7 +1,7 @@
 ///<reference types="../interfaces"/>
 
 import 'mocha'
-import { blockBuilder } from ".."
+import { snippetBuilder } from ".."
 import { expect } from 'chai'
 
 const xpath = require('xpath')
@@ -16,7 +16,7 @@ describe("div with content and link", () => {
     let markup: string | null = null
 
     beforeEach(() => {
-        markup = blockBuilder(
+        markup = snippetBuilder(
             () => div({class: "alert alert-primary", role: "alert"},
                 () => {
                     text("A simple primary ")

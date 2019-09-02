@@ -1,7 +1,7 @@
 ///<reference types="../interfaces"/>
 
 import 'mocha'
-import { blockBuilder } from ".."
+import { snippetBuilder } from ".."
 import { expect } from 'chai'
 
 const xpath = require('xpath')
@@ -13,7 +13,7 @@ describe("generate divs in a loop", () => {
     let num = 10
 
     beforeEach(() => {
-        markup = blockBuilder(() => div(() => {
+        markup = snippetBuilder(() => div(() => {
             for (let i = 0; i < num; i++) {
                 div(`div ${i}`,
                     () => span(`span ${i}`))

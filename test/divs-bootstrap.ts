@@ -1,7 +1,7 @@
 ///<reference types="../interfaces"/>
 
 import 'mocha'
-import { blockBuilder } from ".."
+import { snippetBuilder } from ".."
 import { expect } from 'chai'
 
 
@@ -24,7 +24,7 @@ describe("bootstrap snippet", () => {
                 div({class: `alert alert-${alert}`, role: "alert"},
                     `A simple ${alert} alert—check it out!`)))
 
-        expect(blockBuilder(markup).toHtml().trim()).to.eq(bootstrap_alert_snippet)
+        expect(snippetBuilder(markup).toHtml().trim()).to.eq(bootstrap_alert_snippet)
     })
 
 })
