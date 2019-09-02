@@ -16,15 +16,53 @@ export type ElementOpts = {
                           } & Attributes
 
 
+const tags = ['address', 'article', 'aside', 'footer',
+    'header', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hgroup', 'main', 'nav',
+    'section', 'blockquote', 'dd', 'dir', 'div', 'dl', 'dt',
+    'figcaption', 'figure', 'hr', 'li', 'ol', 'p', 'pre', 'ul', 'a', 'abbr',
+    'b', 'bdi', 'bdo', 'br', 'cite', 'code',
+    'data', 'dfn', 'em', 'i', 'kbd', 'mark', 'q', 'rb', 'rp', 'rt', 'rtc',
+    'ruby', 's', 'samp', 'small', 'span', 'strong', 'sub', 'sup', 'time', 'tt',
+    'u', 'var', 'wbr', 'area', 'audio', 'map', 'track', 'video',
+    'applet', 'embed', 'iframe', 'noembed', 'object', 'param', 'picture',
+    'source', 'canvas', 'noscript', 'script', 'del', 'ins', 'caption', 'col',
+    'colgroup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'button',
+    'datalist', 'fieldset', 'form', 'input', 'label', 'legend', 'meter',
+    'optgroup', 'option', 'output', 'progress', 'select', 'textarea', 'details',
+    'dialog', 'menu', 'menuitem', 'summary', 'content', 'element', 'shadow',
+    'slot', 'template', 'acronym', 'applet', 'basefont', 'bgsound', 'big',
+    'blink', 'center', 'command', 'content', 'dir', 'element', 'font', 'frame',
+    'frameset', 'image', 'isindex', 'keygen', 'listing', 'marquee', 'menuitem',
+    'multicol', 'nextid', 'nobr', 'noframes', 'plaintext', 'shadow',
+    'spacer', 'strike', 'tt', 'xmp', 'area', 'audio', 'map', 'track',
+    'video', 'text']
+
+/**
+ * Represents an element node in the DSL's object hierarchy.
+ */
 export class Element {
+    /**
+     * The element's tag, e.g. div or span
+     */
     tag: string
 
+    /**
+     * This is a void element, no closing tag is required
+     * @type {boolean}
+     */
     noClosingTag: boolean = false
 
     attributes: Attributes = {}
 
+    /**
+     * The element's content
+     */
     value: Primitive | null
 
+    /**
+     * Child elements
+     * @type {any[]}
+     */
     children: Array<Element> = []
 
     isComment: boolean = false
@@ -152,32 +190,12 @@ export class HeadBuilder extends JsDsl {
     }
 }
 
-const tags = ['address', 'article', 'aside', 'footer',
-    'header', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hgroup', 'main', 'nav',
-    'section', 'blockquote', 'dd', 'dir', 'div', 'dl', 'dt',
-    'figcaption', 'figure', 'hr', 'li', 'ol', 'p', 'pre', 'ul', 'a', 'abbr',
-    'b', 'bdi', 'bdo', 'br', 'cite', 'code',
-    'data', 'dfn', 'em', 'i', 'kbd', 'mark', 'q', 'rb', 'rp', 'rt', 'rtc',
-    'ruby', 's', 'samp', 'small', 'span', 'strong', 'sub', 'sup', 'time', 'tt',
-    'u', 'var', 'wbr', 'area', 'audio', 'img', 'map', 'track', 'video',
-    'applet', 'embed', 'iframe', 'noembed', 'object', 'param', 'picture',
-    'source', 'canvas', 'noscript', 'script', 'del', 'ins', 'caption', 'col',
-    'colgroup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'button',
-    'datalist', 'fieldset', 'form', 'input', 'label', 'legend', 'meter',
-    'optgroup', 'option', 'output', 'progress', 'select', 'textarea', 'details',
-    'dialog', 'menu', 'menuitem', 'summary', 'content', 'element', 'shadow',
-    'slot', 'template', 'acronym', 'applet', 'basefont', 'bgsound', 'big',
-    'blink', 'center', 'command', 'content', 'dir', 'element', 'font', 'frame',
-    'frameset', 'image', 'isindex', 'keygen', 'listing', 'marquee', 'menuitem',
-    'multicol', 'nextid', 'nobr', 'noembed', 'noframes', 'plaintext', 'shadow',
-    'spacer', 'strike', 'tt', 'xmp', 'area', 'audio', 'img', 'map', 'track',
-    'video', 'text']
-
 export class BlockBuilder extends JsDsl {
     // noinspection JSUnusedGlobalSymbols
     register() {
         tags.forEach(
             (b: string) => this.registerFactory(b, new ElementFactory()))
+        this.registerFactory('img', new ElementFactory({noClosingTag: true}))
     }
 }
 

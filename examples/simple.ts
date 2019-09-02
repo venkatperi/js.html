@@ -1,6 +1,6 @@
 ///<reference types="../interfaces"/>
 
-import { Element, HtmlBuilder } from "../"
+import { Element, HtmlBuilder } from ".."
 
 const test = () =>
     html({lang: 'en'}, () => {

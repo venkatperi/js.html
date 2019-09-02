@@ -12,7 +12,7 @@ const tags = ['address', 'article', 'aside', 'footer',
     'b', 'bdi', 'bdo', 'br', 'cite', 'code',
     'data', 'dfn', 'em', 'i', 'kbd', 'mark', 'q', 'rb', 'rp', 'rt', 'rtc',
     'ruby', 's', 'samp', 'small', 'span', 'strong', 'sub', 'sup', 'time', 'tt',
-    'u', 'var', 'wbr', 'area', 'audio', 'img', 'map', 'track', 'video',
+    'u', 'var', 'wbr', 'area', 'audio', 'map', 'track', 'video',
     'applet', 'embed', 'iframe', 'noembed', 'object', 'param', 'picture',
     'source', 'canvas', 'noscript', 'script', 'del', 'ins', 'caption', 'col',
     'colgroup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'button',
@@ -23,7 +23,7 @@ const tags = ['address', 'article', 'aside', 'footer',
     'blink', 'center', 'command', 'content', 'dir', 'element', 'font', 'frame',
     'frameset', 'image', 'isindex', 'keygen', 'listing', 'marquee', 'menuitem',
     'multicol', 'nextid', 'nobr', 'noembed', 'noframes', 'plaintext', 'shadow',
-    'spacer', 'strike', 'tt', 'xmp', 'area', 'audio', 'img', 'map', 'track',
+    'spacer', 'strike', 'tt', 'xmp', 'area', 'audio', 'map', 'track',
     'video',]
 
 
@@ -32,9 +32,14 @@ describe("block snippets", () => {
         let markup = blockBuilder(() => div()).toHtml()
         assert(!markup.startsWith(`<!DOCTYPE`), `starts with <!DOCTYPE>`)
     })
-    tags.forEach(t =>
-        it(t, () => expect(blockBuilder(() =>
-            global[t]()).toHtml().trim()).to.eq(`<${t}></${t}>`))
-    )
-
+    describe("tags", () => {
+        tags.forEach(t =>
+            it(t, () => expect(blockBuilder(() =>
+                global[t]()).toHtml().trim()).to.eq(`<${t}></${t}>`))
+        );
+        ['img'].forEach(t =>
+            it(t, () => expect(blockBuilder(() =>
+                global[t]()).toHtml().trim()).to.eq(`<${t}>`))
+        )
+    })
 })

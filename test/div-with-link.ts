@@ -2,19 +2,42 @@
 
 import 'mocha'
 import { blockBuilder } from ".."
-// import { expect } from 'chai'
+import { expect } from 'chai'
 
+const xpath = require('xpath')
+const dom = require('xmldom').DOMParser
 
-describe("div", () => {
-    it("with link", () => {
-        let markup = () => div({class: "alert alert-primary", role: "alert"},
-            () => {
-                text("A simple primary ")
-                a({href: "http://example.com"}, "alert with a link")
-                text("Click if you like it.")
-            })
+const result = `<div class="alert alert-primary" role="alert">A simple primary 
+  <a href="http://example.com">alert with a link</a>Click if you like it.
+</div>`
 
-        console.log(blockBuilder(markup).toHtml())
+describe("div with content and link", () => {
+    let doc = null
+    let markup: string | null = null
+
+    beforeEach(() => {
+        markup = blockBuilder(
+            () => div({class: "alert alert-primary", role: "alert"},
+                () => {
+                    text("A simple primary ")
+                    a({href: "http://example.com"}, "alert with a link")
+                    text("Click if you like it.")
+                })).toHtml()
+        doc = new dom().parseFromString(markup)
+    })
+
+    it("markup is as expected", () => {
+        expect(markup!.trim()).to.eq(result)
+    })
+
+    it("div has role", () => {
+        let attrs = xpath.select("/div/@role", doc)
+        expect(attrs[0].value).to.eq('alert')
+    })
+
+    it("div has a link", () => {
+        let nodes = xpath.select("/div/a", doc)
+        expect(nodes[0].localName).to.eq('a')
     })
 
 })

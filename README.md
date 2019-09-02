@@ -1,11 +1,11 @@
-# js.html
-The `js.html` library provides a domain specific language (DSL) to build HTML with
+# js.html-builder
+The `js.html-builder` library provides a domain specific language (DSL) to build HTML with
 pure javascript code.
 
 ## Installation
 Install with `npm`:
 
-```bash
+```sh
 $ npm install --save js.html-builder
 ```
 
@@ -48,6 +48,8 @@ Generates the following HTML:
 The following HTML snippet mirrors Bootstrap's [alert](https://getbootstrap.com/docs/4.3/components/alerts/) example:
 
 ```javascript
+import { blockBuilder } from "js.html-builder"
+
 let markup = () => div(() =>
     ['primary', 'secondary', 'success', 'danger', 'warning',
     'info', 'light', 'dark'].forEach(alert =>
@@ -76,6 +78,8 @@ In this example, a the text content of a div is mixed with a `link` element. So 
 to explicitly call out the text nodes:
 
 ```javascript
+import { blockBuilder } from "js.html-builder"
+
 let markup = () => div({class: "alert alert-primary", role: "alert"},
     () => {
         text("A simple primary ")
