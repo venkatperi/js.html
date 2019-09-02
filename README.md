@@ -96,3 +96,28 @@ HTML:
   <a href="http://example.com">alert with a link</a>Click if you like it.
 </div>
 ```
+
+## Usage
+Both `htmlBuilder`  and `snippetBuilder` accept a `configuration closure` which configures
+and the markup as desired. To emit a html tag, call a function with the same
+name (except for `var`), e.g.: to emit a `div`, call `div()`. Each tag function
+accepts (syntax permitting) up to three parameters which configure the tag's
+attributes, value and child tags, in that order:
+* **Attributes**: Tag attributes can be set by passing an object to the tag call, e.g.:
+`span({class: 'special', role="alert"})` will emit `<span class="special" role="alert"></span>`.
+* **Content**: Tag content (value) is set by passing as string (or number | boolean), e.g.:
+`p('para contents')` will emit `<p>para contents</p>`.
+* **Child tags**: To emit child tags for the current tag, pass a configuration closure as the last argument. e.g.:
+```javascript
+div( () =>
+    span('span contents')
+)
+```
+will emit:
+```html
+<div>
+    <span>span contents</span>
+</div>
+```
+
+Note that the configuration closure passed as the root must have a single child element.
