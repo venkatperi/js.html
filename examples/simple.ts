@@ -30,3 +30,4 @@ const test = () =>
     })
 
 console.log(new HtmlBuilder().build<Element>(test).toHtml())
+

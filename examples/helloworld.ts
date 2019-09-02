@@ -1,6 +1,6 @@
 ///<reference types="../interfaces"/>
 
-import { htmlBuilder } from ".."
+import { htmlBuilder } from "../"
 
 const code = () =>
     html(() => {
